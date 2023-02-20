@@ -12,21 +12,7 @@ services:
     environment:
       CDASH_ROOT_ADMIN_EMAIL: 'p.tulkin'
       CDASH_ROOT_ADMIN_PASS: 'newpassispass'
-      CDASH_CONFIG: |
-          $$CDASH_APP_URL='http://10.10.2.68';
-          $$CDASH_APP_TIMEZONE='Europe/Moscow';
-          $$CDASH_CDASH_AUTHENTICATION_PROVIDER = 'ldap';
-          $$CDASH_LDAP_PROTOCOL_VERSION = '3';
-          $$CDASH_LDAP_HOSTNAME = 'ldapserver.ru';
-          $$CDASH_LDAP_BASEDN = 'dc=domain,dc=ru';
-          $$CDASH_LDAP_USERNAME = 'readuser';
-          $$CDASH_LDAP_PASSWORD = '$$ReadPass2023';
-          $$CDASH_LDAP_LOGGING = 'true';
-          $$CDASH_CDASH_USE_LDAP = '1';
-          $$CDASH_LDAP_LOCATE_USERS_BY = 'sAMAccountName';
-          $$CDASH_LDAP_GUID = 'displayName';
-          $$CDASH_LDAP_PROVIDER = 'activedirectory';
-          $$CDASH_LDAP_FILTERS_ON = '(memberOf=cn=cdash-users,dc=domain,dc=ru)';        
+                     
     depends_on:
       - mysql
     links:
