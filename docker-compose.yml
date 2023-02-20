@@ -1,0 +1,33 @@
+version: '3.3'
+services:
+  cdash:
+    image: "kitware/cdash"
+    container_name: cdash
+
+    build:
+      context: .
+      dockerfile: ./docker/cdash.docker
+      args:
+        - CDASH_DB_HOST=mysql
+    environment:
+      CDASH_ROOT_ADMIN_EMAIL: 'p.tulkin'
+      CDASH_ROOT_ADMIN_PASS: 'newpassispass'
+                     
+    depends_on:
+      - mysql
+    links:
+      - mysql
+    ports:
+      - "80:80"
+
+  mysql:
+    image: "mysql/mysql-server:5.7"
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_ROOT_PASSWORD: ''
+      MYSQL_DATABASE: 'cdash'
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "3306:3306"
+volumes:
+  CDashVolume:
